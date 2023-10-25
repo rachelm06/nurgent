@@ -1,0 +1,68 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "my_flutter_project",
+            "cwd": "Users/yawn/my_flutter_project",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "my_flutter_project (profile mode)",
+            "cwd": "Users/yawn/my_flutter_project",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "my_flutter_project (release mode)",
+            "cwd": "Users/yawn/my_flutter_project",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flutter_application_1",
+            "cwd": "Users/yawn/calculator/flutter_application_1",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_application_1 (profile mode)",
+            "cwd": "Users/yawn/calculator/flutter_application_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_application_1 (release mode)",
+            "cwd": "Users/yawn/calculator/flutter_application_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flutter_application_1",
+            "cwd": "Users/yawn/hello_project/flutter_application_1",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_application_1 (profile mode)",
+            "cwd": "Users/yawn/hello_project/flutter_application_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_application_1 (release mode)",
+            "cwd": "Users/yawn/hello_project/flutter_application_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
