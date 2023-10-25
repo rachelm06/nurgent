@@ -1,6 +1,6 @@
-# nurgent
+# NURGENT for Congressional App Challenge
 
-NURGENT for Congressional App Challenge
+NURGENT is a habit-building app that uses streaks to help users make and break habits.
 
 ## Getting Started
 
