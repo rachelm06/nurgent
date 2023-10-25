@@ -1,6 +1,6 @@
 # nurgent
 
-A new Flutter project.
+NURGENT for Congressional App Challenge
 
 ## Getting Started
 
