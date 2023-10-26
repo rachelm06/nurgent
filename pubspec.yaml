@@ -1,3 +1,4 @@
+
 name: nurgent
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
@@ -28,6 +29,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  envied: ^0.3.0+3
+  envied_generator: ^0.3.0+3
+  build_runner: ^2.4.6
   flutter:
     sdk: flutter
 
@@ -35,6 +39,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  google_maps_flutter: ^2.5.0
 
 dev_dependencies:
   flutter_test:

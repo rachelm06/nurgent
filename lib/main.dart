@@ -1,28 +1,40 @@
 import 'package:flutter/material.dart';
-import 'pages/home.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-List <Habit> habits = [];
+void main() => runApp(const MyApp());
 
-void main() => runApp(const NURGENT());
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
-class NURGENT extends StatelessWidget {
-  const NURGENT({Key? key}) : super(key: key);
+  @override
+  State createState() => _MyAppState();
+}
+
+class _MyAppState extends State {
+  late GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(-33.86, 151.20);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, 
-      theme: ThemeData(fontFamily: 'Poppins'),
-      home: const HomePage(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Maps Sample App'),
+          backgroundColor: Colors.green[700],
+        ),
+        body: GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+            target: _center,
+            zoom: 11.0,
+          ),
+        ),
+      ),
     );
   }
 }
-
-class Habit{
-  String name;
-  int streak;
-
-  Habit({required this.name, this.streak = 0});
-
-}
-
