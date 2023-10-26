@@ -13,12 +13,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(40.730610, -73.935242);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = [
