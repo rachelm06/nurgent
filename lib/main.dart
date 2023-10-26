@@ -10,10 +10,10 @@ class MyApp extends StatefulWidget {
   State createState() => _MyAppState();
 }
 
-class _MyAppState extends State {
+class _MyAppState extends State<MyApp> {
   late GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(-33.86, 151.20);
+  final LatLng _center = const LatLng(40.730610, -73.935242);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -21,22 +21,28 @@ class _MyAppState extends State {
 
   int _selectedIndex = 0;
 
+  final List<Widget> _widgetOptions = [
+    const Text('Home Page'),
+    const Text('Toilets Page'),
+    const GoogleMap(
+      initialCameraPosition: CameraPosition(
+        target: LatLng(40.730610, -73.935242),
+        zoom: 11.0,
+      ),
+    ),
+    const Text('Profile Page'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('NURGENT'),
-          backgroundColor: Color.fromARGB(255, 34, 49, 131),
+          backgroundColor: const Color.fromARGB(255, 34, 49, 131),
           centerTitle: true
         ),
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
-          ),
-        ),
+        body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         child: SizedBox(
