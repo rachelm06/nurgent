@@ -50,22 +50,33 @@ class _MyAppState extends State<MyApp> {
         setState(() {
             _currentLocation = LatLng(_currentLoc.latitude!, _currentLoc.longitude!);
         });
+        if (mapController != null) {
+          mapController.animateCamera(
+            CameraUpdate.newCameraPosition(
+            CameraPosition(target: _currentLocation, zoom: 11.0),
+            ),
+          );
+        }   
         print(_currentLocation);
       }
     });
   }
 
-  final List<Widget> _widgetOptions = [
-    const Text('Home Page'),
-    const Text('Toilets Page'),
-    const GoogleMap(
-      initialCameraPosition: CameraPosition(
-        target: LatLng(40.730610, -73.935242),
-        zoom: 11.0,
+  List<Widget> _getWidgetOptions() {
+    return [
+      const Text('Home Page'),
+      const Text('Toilets Page'),
+      GoogleMap(
+        initialCameraPosition: CameraPosition(
+          target: _currentLocation,
+          zoom: 11.0,
+        ),
+        myLocationEnabled: true,
       ),
-    ),
-    const Text('Profile Page'),
-  ];
+      const Text('Profile Page'),
+    ];
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +87,7 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: const Color.fromARGB(255, 34, 49, 131),
           centerTitle: true
         ),
-        body: _widgetOptions.elementAt(_selectedIndex),
+        body: _getWidgetOptions().elementAt(_selectedIndex),
         bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         child: SizedBox(
