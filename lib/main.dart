@@ -65,8 +65,6 @@ class _MyAppState extends State<MyApp> {
 
   List<Widget> _getWidgetOptions() {
     return [
-      const Text('Home Page'),
-      const Text('Toilets Page'),
       GoogleMap(
         initialCameraPosition: CameraPosition(
           target: _currentLocation,
@@ -74,6 +72,7 @@ class _MyAppState extends State<MyApp> {
         ),
         myLocationEnabled: true,
       ),
+      const Text('Toilets Page'),
       const Text('Profile Page'),
     ];
   }
@@ -100,8 +99,8 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconBottomBar(
-                    text: "Home",
-                    icon: Icons.home,
+                    text: "Map",
+                    icon: Icons.map,
                     selected: _selectedIndex == 0,
                     onPressed: () {
                       setState(() {
@@ -109,30 +108,21 @@ class _MyAppState extends State<MyApp> {
                       });
                     }),
                 IconBottomBar(
-                    text: "Toilets",
-                    icon: Icons.restaurant,
-                    selected: _selectedIndex == 1,
-                    onPressed: () {
-                      setState(() {
-                        _selectedIndex = 1;
-                      });
-                    }),
+                  text: "Toilets",
+                  icon: Icons.restaurant,
+                  selected: _selectedIndex == 1,
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 1;
+                    });
+                  }),
                 IconBottomBar(
-                    text: "Map",
-                    icon: Icons.map,
+                    text: "Profile",
+                    icon: Icons.person,
                     selected: _selectedIndex == 2,
                     onPressed: () {
                       setState(() {
                         _selectedIndex = 2;
-                      });
-                    }),
-                IconBottomBar(
-                    text: "Profile",
-                    icon: Icons.person,
-                    selected: _selectedIndex == 3,
-                    onPressed: () {
-                      setState(() {
-                        _selectedIndex = 3;
                       });
                     })
               ],

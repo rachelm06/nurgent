@@ -11,12 +11,7 @@ if (localPropertiesFile.exists()) {
         localProperties.load(reader)
     }
 }
-def mapsApiKey = localProperties.getProperty('MAPS_API_KEY')
-android {
-    defaultConfig {
-        manifestPlaceholders += [MAPS_API_KEY: mapsApiKey]
-    }
-}
+
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
     flutterVersionCode = '1'
