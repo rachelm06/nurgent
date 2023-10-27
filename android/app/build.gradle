@@ -2,7 +2,6 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 def localProperties = new Properties()
@@ -12,7 +11,12 @@ if (localPropertiesFile.exists()) {
         localProperties.load(reader)
     }
 }
-
+def mapsApiKey = localProperties.getProperty('MAPS_API_KEY')
+android {
+    defaultConfig {
+        manifestPlaceholders += [MAPS_API_KEY: mapsApiKey]
+    }
+}
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
     flutterVersionCode = '1'
