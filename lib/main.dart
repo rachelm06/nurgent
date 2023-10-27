@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,8 +13,47 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late GoogleMapController mapController;
+  LatLng _currentLocation = LatLng(40.730610, -73.935242); 
+  Location location = new Location();
+  late bool _serviceEnabled;
+  late PermissionStatus _permissionGranted;
 
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserLocation();
+  }
+
+  _getUserLocation() async {
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) { // Note the NOT (!) here
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+    
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    location.onLocationChanged.listen((LocationData _currentLoc){
+      if(_currentLocation.latitude != null 
+      && _currentLocation.longitude != null){
+        setState(() {
+            _currentLocation = LatLng(_currentLoc.latitude!, _currentLoc.longitude!);
+        });
+        print(_currentLocation);
+      }
+    });
+  }
 
   final List<Widget> _widgetOptions = [
     const Text('Home Page'),
