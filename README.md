@@ -1,6 +1,6 @@
 # NURGENT for Congressional App Challenge
 
-NURGENT is a habit-building app that uses streaks to help users make and break habits.
+NURGENT is an app that allows users to find bathrooms near them in public. This app not only includes public bathrooms, but also free bathrooms from hotels, parks, hotels, bookstores, fast food restaurants, metro stations and more.
 
 ## Getting Started
 
