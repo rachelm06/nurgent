@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -13,8 +15,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late GoogleMapController mapController;
-  LatLng _currentLocation = LatLng(40.730610, -73.935242); 
-  Location location = new Location();
+  LatLng _currentLocation = const LatLng(40.730610, -73.935242); 
+  Location location = Location();
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
 
@@ -44,11 +46,11 @@ class _MyAppState extends State<MyApp> {
       }
     }
 
-    location.onLocationChanged.listen((LocationData _currentLoc){
+    location.onLocationChanged.listen((LocationData currentLoc){
       if(_currentLocation.latitude != null 
       && _currentLocation.longitude != null){
         setState(() {
-            _currentLocation = LatLng(_currentLoc.latitude!, _currentLoc.longitude!);
+            _currentLocation = LatLng(currentLoc.latitude!, currentLoc.longitude!);
         });
         if (mapController != null) {
           mapController.animateCamera(
@@ -57,7 +59,6 @@ class _MyAppState extends State<MyApp> {
             ),
           );
         }   
-        print(_currentLocation);
       }
     });
   }
@@ -145,7 +146,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class IconBottomBar extends StatelessWidget {
-  IconBottomBar(
+  const IconBottomBar(
       {Key? key,
       required this.text,
       required this.icon,
