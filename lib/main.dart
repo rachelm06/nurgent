@@ -6,6 +6,55 @@ import 'package:location/location.dart';
 
 void main() => runApp(const MyApp());
 
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: const Center(
+          child: ProfileCard(),
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileCard extends StatelessWidget {
+  const ProfileCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      child: const Column(
+        children: <Widget>[
+          CircleAvatar(
+            radius: 50.0,
+            backgroundImage: NetworkImage('https://placekitten.com/200/200'), // Add your image URL here
+          ),
+          SizedBox(height: 10.0),
+          Text(
+            'Jane Doe',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+            ),
+          ),
+          SizedBox(height: 5.0),
+          Text(
+            '23 bathrooms visited in 2023',
+            style: TextStyle(
+              fontSize: 16.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -73,7 +122,7 @@ class _MyAppState extends State<MyApp> {
         myLocationEnabled: true,
       ),
       const Text('Toilets Page'),
-      const Text('Profile Page'),
+      const ProfilePage(),
     ];
   }
 
