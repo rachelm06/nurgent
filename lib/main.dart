@@ -24,11 +24,21 @@ class _MyAppState extends State<MyApp> {
   late PermissionStatus _permissionGranted;
   int _selectedIndex = 0;
   late Set<Marker> toiletData;
+  late BitmapDescriptor customIcon;
+
+  Future<void> loadCustomIcon() async {
+    customIcon = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(size: Size(1, 1)), // Adjust the size as needed
+      'assets/images/toilet.png',
+    );
+  }
+
   @override
   void initState() {
     super.initState();
-    _loadData();
     _getUserLocation();
+    loadCustomIcon();
+    _loadData();
   }
 
   Future<Set<Marker>> loadMarkersFromJson() async {
@@ -44,6 +54,7 @@ class _MyAppState extends State<MyApp> {
       return Marker(
         markerId: MarkerId(name),
         position: LatLng(latitude, longitude),
+        icon: customIcon,
         infoWindow: InfoWindow(
           title: name,
           snippet: address,
