@@ -1,0 +1,14 @@
+[
+    {
+      "latitude": 40.730610,
+      "longitude": -73.935242,
+      "name": "Public Restroom 1",
+      "address": "123 Main Street, City, State"
+    },
+    {
+      "latitude": 40.7128,
+      "longitude": -74.0060,
+      "name": "City Park Toilet",
+      "address": "456 Elm Street, Another City, Another State"
+    }
+  ]
