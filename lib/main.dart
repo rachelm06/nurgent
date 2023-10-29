@@ -14,9 +14,9 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
-        body: const Center(
+        body: Center(
           child: ProfileCard(),
         ),
       ),
@@ -35,7 +35,8 @@ class ProfileCard extends StatelessWidget {
         children: <Widget>[
           CircleAvatar(
             radius: 50.0,
-            backgroundImage: NetworkImage('https://placekitten.com/200/200'), // Add your image URL here
+            backgroundImage: NetworkImage(
+                'https://placekitten.com/200/200'), // Add your image URL here
           ),
           SizedBox(height: 10.0),
           Text(
@@ -202,7 +203,7 @@ class _MyAppState extends State<MyApp> {
                       }),
                   IconBottomBar(
                       text: "Toilets",
-                      icon: Icons.restaurant,
+                      icon: Icons.wc,
                       selected: _selectedIndex == 1,
                       onPressed: () {
                         setState(() {
