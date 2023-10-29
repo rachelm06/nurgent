@@ -9,51 +9,38 @@ import 'package:location/location.dart';
 
 void main() => runApp(const MyApp());
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: const Center(
-          child: ProfileCard(),
-        ),
-      ),
-    );
-  }
-}
-
 class ProfileCard extends StatelessWidget {
   const ProfileCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: const Column(
-        children: <Widget>[
-          CircleAvatar(
-            radius: 50.0,
-            backgroundImage: NetworkImage('https://placekitten.com/200/200'), // Add your image URL here
-          ),
-          SizedBox(height: 10.0),
-          Text(
-            'Jane Doe',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20.0,
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: const Column(
+          children: <Widget>[
+            CircleAvatar(
+              radius: 50.0,
+              backgroundImage: NetworkImage('https://placekitten.com/200/200'), // Add your image URL here
             ),
-          ),
-          SizedBox(height: 5.0),
-          Text(
-            '23 bathrooms visited in 2023',
-            style: TextStyle(
-              fontSize: 16.0,
+            SizedBox(height: 10.0),
+            Text(
+              'Jane Doe',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
+              ),
             ),
-          ),
-        ],
-      ),
+            SizedBox(height: 5.0),
+            Text(
+              '23 bathrooms visited in 2023',
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+          ],
+        ),
+      )
     );
   }
 }
@@ -168,7 +155,7 @@ class _MyAppState extends State<MyApp> {
         myLocationEnabled: true,
       ),
       const Text('Toilets Page'),
-      const ProfilePage(),
+      const ProfileCard(),
     ];
   }
 
@@ -177,7 +164,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-            title: const Text('NURGENT'),
+            title: Image.asset(
+              'assets/images/logo-no-background_1_240x60.png', 
+              fit: BoxFit.contain,  // You can use different BoxFit properties to fit the image appropriately
+              height: 40.0,  // You can adjust the height as required
+            ),
             backgroundColor: const Color.fromARGB(255, 34, 49, 131),
             centerTitle: true),
         body: _getWidgetOptions().elementAt(_selectedIndex),
