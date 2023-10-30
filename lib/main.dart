@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
   int _selectedIndex = 0;
-  late Set<Marker> toiletData;
+  Set<Marker> toiletData = {};
   late BitmapDescriptor customIcon;
 
   Future<void> loadCustomIcon() async {
@@ -78,27 +78,36 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<Set<Marker>> loadMarkersFromJson() async {
-    final jsonString = await rootBundle.loadString('assets/data/toilets.json');
-    final List<dynamic> jsonList = json.decode(jsonString);
+    try {
+      final jsonString =
+          await rootBundle.loadString('assets/data/toilets.json');
+      final List<dynamic> jsonList = json.decode(jsonString);
 
-    final Set<Marker> markers = jsonList.map((json) {
-      final double latitude = json['latitude'];
-      final double longitude = json['longitude'];
-      final String name = json['name'];
-      final String address = json['address'];
+      final Set<Marker> markers = jsonList.map((json) {
+        final String coords = json['coords'];
+        final double latitude =
+            double.parse(coords.substring(0, coords.indexOf(',')));
+        final double longitude =
+            double.parse(coords.substring(coords.indexOf(',') + 2));
+        final String name = json['name'];
+        final String address = json['address'];
 
-      return Marker(
-        markerId: MarkerId(name),
-        position: LatLng(latitude, longitude),
-        icon: customIcon,
-        infoWindow: InfoWindow(
-          title: name,
-          snippet: address,
-        ),
-      );
-    }).toSet();
-
-    return markers;
+        return Marker(
+          markerId: MarkerId(name),
+          position: LatLng(latitude, longitude),
+          icon: customIcon,
+          infoWindow: InfoWindow(
+            title: name,
+            snippet: address,
+          ),
+        );
+      }).toSet();
+      return markers;
+    } catch (e) {
+      print("Error in loadMarkersFromJson: $e");
+      // Handle the error or return an empty set of markers if there's an issue.
+      return <Marker>{};
+    }
   }
 
   void _loadData() async {
