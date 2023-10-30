@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'dart:convert';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -44,6 +44,83 @@ class ProfileCard extends StatelessWidget {
     ));
   }
 }
+
+class Toilet {
+  final String name;
+  final String address;
+  final LatLng coordinates;
+  final double? rating;
+
+  Toilet({required this.name, required this.address, required this.coordinates, this.rating});
+}
+
+class ToiletPage extends StatefulWidget {
+  final Set<Toilet> toilets;
+
+  ToiletPage({Key? key, required this.toilets}) : super(key: key);
+
+  @override
+  _ToiletPageState createState() => _ToiletPageState();
+}
+
+class _ToiletPageState extends State<ToiletPage> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextFormField(
+          controller: _searchController,
+          decoration: InputDecoration(
+            prefixIcon: Icon(Icons.search, color: Colors.grey),
+            hintText: 'Search by address...',
+            filled: true,
+            fillColor: Colors.white,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              borderSide: BorderSide(color: Colors.grey[300]!, width: 2),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              borderSide: BorderSide(color: Colors.blue),
+            ),
+          ),
+        ),
+        Expanded(
+          child: ListView.separated(
+            itemCount: widget.toilets.length,
+            separatorBuilder: (context, index) => Divider(color: Colors.grey),
+            itemBuilder: (context, index) {
+              final toilet = widget.toilets.elementAt(index);
+              return ListTile(
+                title: Row(
+                  children: [
+                    Expanded(
+                      child: Text(toilet.name),
+                    ),
+                    if (toilet.rating != null) ...[ // Use the spread operator with the conditional check
+                      Text(
+                        toilet.rating!.toStringAsFixed(1), // Use the ! to assert non-null
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),  
+                    ],
+                    Icon(Icons.star, color: Colors.yellow),
+                  ],
+                ),
+                subtitle: Text(toilet.address),
+                onTap: () {
+                  // Handle tap action
+                },
+              );
+            }
+          )
+        )
+      ],
+    );
+  }
+}
+
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -110,12 +187,26 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  void _loadData() async {
-    final data = await loadMarkersFromJson();
-    setState(() {
-      toiletData = data;
-    });
-  }
+  List<Toilet> toiletList = [];
+
+  Future<void> _loadData() async {
+  final data = await loadMarkersFromJson();
+  final random = Random();
+  setState(() {
+    toiletData = data;
+    
+    toiletList = data.map((marker) {
+      final double randomRating = (random.nextDouble() * 4 + 1).toDouble(); // Random rating between 1 to 5
+    
+      return Toilet(
+        name: marker.infoWindow.title!,
+        address: marker.infoWindow.snippet!,
+        coordinates: marker.position,
+        rating: randomRating, // Random rating between 1 to 5
+      );
+    }).toList();
+  });
+}
 
   _getUserLocation() async {
     _serviceEnabled = await location.serviceEnabled();
@@ -145,7 +236,7 @@ class _MyAppState extends State<MyApp> {
         if (mapController != null) {
           mapController.animateCamera(
             CameraUpdate.newCameraPosition(
-              CameraPosition(target: _currentLocation, zoom: 11.0),
+              CameraPosition(target: _currentLocation, zoom: 20.0),
             ),
           );
         }
@@ -163,7 +254,7 @@ class _MyAppState extends State<MyApp> {
         markers: toiletData,
         myLocationEnabled: true,
       ),
-      const Text('Toilets Page'),
+      ToiletPage(toilets: Set.from(toiletList)), 
       const ProfileCard(),
     ];
   }
