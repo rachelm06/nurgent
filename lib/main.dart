@@ -20,7 +20,7 @@ class ProfileCard extends StatelessWidget {
       child: const Column(
         children: <Widget>[
           CircleAvatar(
-            radius: 50.0,
+            radius: 70.0,
             backgroundImage: NetworkImage(
                 'https://placekitten.com/200/200'), // Add your image URL here
           ),
@@ -29,7 +29,7 @@ class ProfileCard extends StatelessWidget {
             'Jane Doe',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20.0,
+              fontSize: 30.0,
             ),
           ),
           SizedBox(height: 5.0),
