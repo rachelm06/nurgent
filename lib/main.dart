@@ -12,12 +12,97 @@ void main() => runApp(const MyApp());
 class ProfileCard extends StatelessWidget {
   const ProfileCard({super.key});
 
+  List<Widget> _buildReviews() {
+    List <Map<String, String>> places = [
+      {
+      "name": "Agnes Haywood Playground Public Restroom",
+      "address": "East 215 Street, Barnes Avenue, East 216 Street",
+      },
+      {
+        "name": "Allerton Playground Public Restroom",
+        "address": "Allerton Avenue between Throop Avenue & Stedman Place",
+      },
+      {
+        "name": "Aqueduct Walk Public Restroom",
+        "address": "Aqueduct Ave. E & W. 182nd St.",
+      },
+      {
+        "name": "Barnes & Nobles",
+        "address": "2289 Broadway",
+      },
+      {
+        "name": "McDonalds",
+        "address": "125th St & Lexington Ave",
+      },
+      {
+        "name": "Burger King",
+        "address": "1380 Jerome Ave",
+      },
+    
+  
+  ];
+  List<Widget> reviews = [];
+
+    for (var place in places) {
+      double rating = 1 + (4 * Random().nextDouble());
+
+      reviews.add(
+        Container(
+          margin: EdgeInsets.only(top: 16.0),
+          padding: EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.grey,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                place['name'] ?? 'Unknown Name',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                ),
+              ),
+              SizedBox(height: 5.0),
+              Text(
+                place['address'] ?? 'Unknown Address',
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),
+              ),
+              Row(
+                children: [
+                  Text(
+                    rating.toStringAsFixed(1),
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    return reviews;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      padding: const EdgeInsets.all(16.0),
-      child: const Column(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
         children: <Widget>[
           CircleAvatar(
             radius: 70.0,
@@ -39,7 +124,19 @@ class ProfileCard extends StatelessWidget {
               fontSize: 16.0,
             ),
           ),
-        ],
+          SizedBox(height: 20.0),
+          Text(
+              'Your Reviews',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
+              ),
+            ),
+             Expanded(
+              child: ListView(
+                children: _buildReviews(),
+              ),
+      )],
       ),
     ));
   }

@@ -5,6 +5,16 @@
   "address": "Bronx River Parkway"
 },
 {
+  "coords": "40.8476347, 73.9010125",
+  "name": "Burger King",
+  "address": "400 East Tremont Ave"
+},
+{
+  "coords": "40.862420, -73.896500",
+  "name": "Burger King",
+  "address": "213 E Forham Rd"
+},
+{
   "coords": "40.81800958293335, -73.9049627877516",
   "name": "Abigail Playground Public Restroom",
   "address": "East 156 Street, Tinton Avenue"
@@ -113,6 +123,46 @@
   "coords": "40.85656782215271, -73.88683936076417",
   "name": "Ciccarone Park Public Restroom",
   "address": "Arthur Avenue, East 188 Street"
+},
+{
+  "coords": "40.774680, -73.954430",
+  "name": "Starbucks",
+  "address": "1559 2nd Avenue"
+},
+{
+  "coords": "40.77222739742017, -73.9506991471931",
+  "name": "Starbucks",
+  "address": "444 E. 80th St"
+},
+{
+  "coords": "40.77917036520998, -73.95534724534757",
+  "name": "Barnes & Nobles",
+  "address": "150 E 86th St"
+},
+{
+  "coords": "40.78622862466794, -73.97872227418243",
+  "name": "Barnes & Nobles",
+  "address": "2289 Broadway"
+},
+{
+  "coords": "40.804372059389415, -73.93741310976426",
+  "name": "McDonalds",
+  "address": "125th St & Lexington Ave"
+},
+{
+  "coords": "40.81236349411442, -73.94182721835664",
+  "name": "McDonalds",
+  "address": "444 Lenox Ave"
+},
+{
+  "coords": "40.826361723055236, -73.86159548991121",
+  "name": "McDonalds",
+  "address": "1865 Bruckner Blvd"
+},
+{
+  "coords": "40.83967582279219, -73.91772331835567",
+  "name": "Burger King",
+  "address": "1380 Jerome Ave"
 },
 {
   "coords": "40.84134745679064, -73.90746723155156",
